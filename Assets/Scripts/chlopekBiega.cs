@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class chlopekBiega : MonoBehaviour
@@ -14,7 +16,10 @@ public class chlopekBiega : MonoBehaviour
     float speed = 3f;
 
     public Text timer_Text;
+    public Text pointText;
     private int timer;
+    public int points = 0;
+    public GameObject restartPanel;
 
     private void Awake()
     {
@@ -28,6 +33,7 @@ public class chlopekBiega : MonoBehaviour
         Time.timeScale = 1f;
         StartCoroutine(CountTime());
         timer = 0;
+        restartPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +41,7 @@ public class chlopekBiega : MonoBehaviour
     {
         move();
         PlayerBounce();
+        pointText.text = "x " + points.ToString();
     }
 
     void PlayerBounce()
@@ -79,11 +86,10 @@ public class chlopekBiega : MonoBehaviour
         transform.position = temp;
     }
 
-    IEnumerator RestartGame()
+    public void RestartGame()
     {
-        yield return new WaitForSecondsRealtime(2f);
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     IEnumerator CountTime()
@@ -99,8 +105,17 @@ public class chlopekBiega : MonoBehaviour
     {
         if (collider.tag == "Knife")
         {
+            restartPanel.gameObject.SetActive(true);
             Time.timeScale = 0f;
-            StartCoroutine(RestartGame());
+            
+            //StartCoroutine(RestartGame());
+            
+        }
+
+        if (collider.tag == "Apple")
+        {
+            points++;
+            Destroy(collider.gameObject);
         }
     }
 }
