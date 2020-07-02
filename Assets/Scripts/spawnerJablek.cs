@@ -31,6 +31,7 @@ public class spawnerJablek : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 }

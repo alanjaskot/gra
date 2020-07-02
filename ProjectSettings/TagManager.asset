@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Knife
   - Apple
+  - podloga
   layers:
   - Default
   - TransparentFX

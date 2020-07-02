@@ -117,5 +117,11 @@ public class chlopekBiega : MonoBehaviour
             points++;
             Destroy(collider.gameObject);
         }
+
+        
     }
+
+    
+
+    
 }
