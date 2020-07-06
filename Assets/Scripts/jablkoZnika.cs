@@ -7,27 +7,27 @@ public class jablkoZnika : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag=="Apple")
+        if (collider.tag == "podloga")
         {
-            delay();
-            Destroy(collider.gameObject);
-        }    
+            //delay();
+            Destroy(gameObject, 3f);
+        }
     }
 
-    IEnumerator delay()
+    /*IEnumerator delay()
     {
         yield return new WaitForSeconds(3f);
-    }
+    }*/
 
 }
